@@ -4,6 +4,7 @@ import { DATABASE, DB_USERNAME, PASSWORD, DB_HOST, DB_PORT } from "./configEnv.j
 import GrupoEntity from "../entity/grupo.entity.js";
 import UsuarioEntity from "../entity/usuario.entity.js";
 import SolicitudEntity from "../entity/solicitud.entity.js";
+import VotoEntity from "../entity/voto.entity.js";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
     username: `${DB_USERNAME}`,
     password: `${PASSWORD}`,
     database: `${DATABASE}`,
-    entities: [GrupoEntity, UsuarioEntity, SolicitudEntity],
+    entities: [GrupoEntity, UsuarioEntity, SolicitudEntity, VotoEntity],
     synchronize: true,
     logging: false,
 });
