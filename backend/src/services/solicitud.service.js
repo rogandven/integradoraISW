@@ -6,7 +6,7 @@ export const solicitudRepository = AppDataSource.getRepository(SolicitudEntity);
 
 export const getSolicitudes = async () => {
     try {
-        return await solicitudRepository.find();
+        return await solicitudRepository.find({relations: {rut_usuario: true, id_grupo: true}});
     } catch (error) {
         console.error(error);
         throw error;

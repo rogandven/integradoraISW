@@ -11,3 +11,14 @@ export const obtenerUsuariosPorGrupo = async (id_grupo) => {
         return [];
     }
 }
+
+export const cantidadUsuariosPorGrupo = async (id_grupo) => {
+    try {
+        const cantidadDeUsuarios = (await userRepository.count({where: {id_grupo: id_grupo}})) || 99999;
+        return cantidadDeUsuarios;
+    } catch (error) {
+        return 99999;
+    }
+}
+
+export const 

@@ -1,11 +1,15 @@
 import { getGrupos } from "../services/grupo.service.js";
-import { createSolicitud } from "../services/solicitud.service.js";
-import { obtenerUsuariosPorGrupo } from "../services/usuario.service.js";
+import { createSolicitud, getSolicitudes as s_getSolicitudes } from "../services/solicitud.service.js";
+import { cantidadUsuariosPorGrupo, obtenerUsuariosPorGrupo } from "../services/usuario.service.js";
 import { createVoto } from "../services/voto.service.js";
 
 export const SolicitarUnirse = async (req, res) => {
     try {
         const idGrupo = req.query.grupo;
+        if (await cantidadUsuariosPorGrupo(idGrupo) <= 0) {
+            
+        }
+
         const solicitud = await createSolicitud({rut_usuario: req.user.rut, id_grupo: idGrupo, estado: null});
         return res.status(200).json({message: "Solicitud creada con éxito", data: solicitud});
     } catch (error) {
@@ -34,6 +38,14 @@ export const VerGrupos = async (req, res) => {
             }
         }
         return res.status(200).json({message: "Grupos encontrados con éxito", data: grupos});
+    } catch (error) {
+        return res.status(500).json({message: "Error interno del servidor"});
+    }
+}
+
+export const getSolicitudes = async (req, res) => {
+    try {
+        const solicitudes = await s_getSolicitudes();
     } catch (error) {
         return res.status(500).json({message: "Error interno del servidor"});
     }
