@@ -167,12 +167,15 @@ export async function login(req, res) {
     if (error) return res.status(400).json({ message: error.message });
 
     const userFound = await userRepository.findOne({ where: { email } });
+
+    console.log(userFound);
+
     if (!userFound)
       return res
         .status(404)
         .json({ message: "El correo electrónico no está registrado" });
 
-    const isMatch = await comparePassword(password, userFound.password);
+    const isMatch = await comparePassword(password, userFound.contrasenia);
     if (!isMatch)
       return res
         .status(401)

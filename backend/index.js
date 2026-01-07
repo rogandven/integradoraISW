@@ -29,7 +29,7 @@ async function setupServer() {
 async function setupAPI() {
   try {
     await connectDB();
-    // await createUsers();
+    await createUsers();
     await setupServer();
   } catch (error) {
     console.error("Error en index.js -> setupAPI(): ", error);

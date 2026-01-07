@@ -3,28 +3,23 @@
 // import User from "../entity/user.entity.js";
 import { AppDataSource } from "../config/configDb.js";
 import { encryptPassword } from "../helpers/bcrypt.helper.js";
+import UsuarioEntity from "../entity/usuario.entity.js";
 
 export async function createUsers() {
     try {
-        const userRepository = null;
-        // const userRepository = AppDataSource.getRepository(User);
+        const userRepository = AppDataSource.getRepository(UsuarioEntity);
 
         const count = await userRepository.count();
         if (count > 0) return;
         const users = [
             {
-                username: "Administrador",
                 rut: "12345678-9",
-                email: "admin@gmail.com",
-                password: await encryptPassword("admin123"),
-                role: "administrador"
-            },
-            {
-                username: "Usuario",
-                rut: "98765432-1",
-                email: "usuario@gmail.com",
-                password: await encryptPassword("usuario123"),
-                role: "usuario"
+                nombres: "Roger Andres", 
+                apellidos: "Venegas Opazo",
+                email: "rogervenegas@gmail.com",
+                contrasenia: await encryptPassword("minecraft"),
+                tipo_usuarios: "administrador",
+                id_grupo: null
             }
         ]
 
