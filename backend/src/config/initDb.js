@@ -20,7 +20,16 @@ export async function createUsers() {
                 contrasenia: await encryptPassword("minecraft"),
                 tipo_usuarios: "administrador",
                 id_grupo: null
-            }
+            },
+            {
+                rut: "987654321-0",
+                nombres: "Alejandra Andrea", 
+                apellidos: "Segura Navarrete",
+                email: "asegura@gmail.com",
+                contrasenia: await encryptPassword("asegura123"),
+                tipo_usuarios: "administrador",
+                id_grupo: null
+            }            
         ]
 
         console.log("Creando usuarios...");

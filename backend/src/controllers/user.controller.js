@@ -108,8 +108,8 @@ export async function getProfile(req, res) {
 export async function getUserStats(req, res) {
   try {
     const usuariosCreados = await userRepository.count();
-    const usuarios = await userRepository.count({where: {role: "usuario"}});
-    const admninistradores = await userRepository.count({where: {role: "administrador"}});
+    const usuarios = await userRepository.count({where: {tipo_usuarios: "usuario"}});
+    const admninistradores = await userRepository.count({where: {tipo_usuarios: "administrador"}});
     res.status(200).json({ 
       usuariosCreados: Number(usuariosCreados || 0),
       usuarios: Number(usuarios || 0),

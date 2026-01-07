@@ -9,6 +9,7 @@ import Users from '@pages/Users'
 import Profile from '@pages/Profile'
 import ProtectedRoute from '@components/ProtectedRoute'
 import "@styles/global.css";
+import Groups from "@pages/Groups.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/groups",
+        element: <Groups />
       }
     ],
   },

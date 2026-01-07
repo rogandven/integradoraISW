@@ -33,7 +33,7 @@ export const VerGrupos = async (req, res) => {
                 console.error(error);
             }
         }
-        return res.status(200).json({message: "Grupos encontrados con éxito"});
+        return res.status(200).json({message: "Grupos encontrados con éxito", data: grupos});
     } catch (error) {
         return res.status(500).json({message: "Error interno del servidor"});
     }

@@ -1,15 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { logout } from "@services/auth.service.js";
 import { FaHome, FaUsers, FaSignOutAlt } from "react-icons/fa";
+import { HiUserGroup } from "react-icons/hi2";
 import { CgProfile } from "react-icons/cg";
 import { DUSidebarItem } from "./DUSidebarItem";
 
 export const DUSidebar = ({PageContent, SidebarTitle}) => {
     const navigate = useNavigate();
-
-    const user = JSON.parse(sessionStorage.getItem("usuario")) || "";
-    const userRole = user?.rol;
-
     const logoutSubmit = () => {
         try {
         logout();
@@ -46,7 +43,9 @@ export const DUSidebar = ({PageContent, SidebarTitle}) => {
                     {DUSidebarItem((FaHome), "Inicio", "/home")}
                     {DUSidebarItem((FaUsers), "Usuarios", "/users")}
                     {DUSidebarItem((CgProfile), "Perfil", "/profile")}
+                    {DUSidebarItem((HiUserGroup), "Grupos", "/groups", null)}
                     {DUSidebarItem((FaSignOutAlt), "Cerrar Sesión", "/login", logoutSubmit)}
+
                 </ul>
                 </div>
             </div>

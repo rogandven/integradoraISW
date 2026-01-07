@@ -42,7 +42,7 @@ export async function loginService(datauser) {
 
 export async function logout() {
     try {
-        await axios.post('/auth/logout');
+        await axios.post('/users/logout');
         sessionStorage.removeItem('usuario');
         cookies.remove('jwt');
         cookies.remove('jwt-auth');
