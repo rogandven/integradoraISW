@@ -1,4 +1,5 @@
 import { GrGroup } from "react-icons/gr";
+import { BsPersonFillAdd } from "react-icons/bs";
 
 
 export const DUGroupTable = (groups) => {
@@ -12,6 +13,7 @@ export const DUGroupTable = (groups) => {
                 <th>Cantidad Máxima</th>
                 <th>Cantidad Mínima</th>
                 <th>Integrantes</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +39,9 @@ export const DUGroupTable = (groups) => {
                                         <p>{alumno.nombres + " " + alumno.apellidos}</p>
                                     )
                                 })}
+                            </td>
+                            <td>
+                                <button className="btn btn-primary"><BsPersonFillAdd /></button>
                             </td>
                         </tr>
                     )
