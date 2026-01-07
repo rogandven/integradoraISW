@@ -24,7 +24,8 @@ export const getSolicitud = async (id) => {
 
 export const createSolicitud = async (data) => {
     try {
-        return await solicitudRepository.save(data);
+        const solicitudNueva = solicitudRepository.create(data);
+        return await solicitudRepository.save(solicitudNueva);
     } catch (error) {
         console.error(error);
         throw error;

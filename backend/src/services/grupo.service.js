@@ -6,7 +6,7 @@ export const grupoRepository = AppDataSource.getRepository(GrupoEntity);
 
 export const getGrupos = async () => {
     try {
-        return await grupoRepository.find();
+        return await grupoRepository.find({relations: {usuario: true}});
     } catch (error) {
         console.error(error);
         throw error;

@@ -24,7 +24,8 @@ export const getVoto = async (id) => {
 
 export const createVoto = async (data) => {
     try {
-        return await votoRepository.save(data);
+        const votoNuevo = votoRepository.create(data);
+        return await votoRepository.save(votoNuevo);
     } catch (error) {
         console.error(error);
         throw error;
