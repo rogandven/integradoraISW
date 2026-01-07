@@ -141,14 +141,6 @@ export async function register(req, res) {
     if (existingRutUser)
       return res.status(409).json({ message: "Rut ya registrado." });
 
-    const existingUsernameUser = await userRepository.findOne({
-      where: { username },
-    });
-    if (existingUsernameUser)
-      return res
-        .status(409)
-        .json({ message: "Nombre de usuario ya registrado." });
-
     const newUser = userRepository.create({
       username,
       email,
