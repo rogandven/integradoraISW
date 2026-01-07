@@ -1,9 +1,8 @@
 "use strict";
-import User from "../entity/user.entity.js";
+import UsuarioEntity from "../entity/usuario.entity.js";
 import { AppDataSource } from "../config/configDb.js";
 import jwt from "jsonwebtoken";
 import { encryptPassword, comparePassword } from "../helpers/bcrypt.helper.js";
-import { AppDataSource } from "../config/configDb.js";
 import { SESSION_SECRET } from "../config/configEnv.js";
 import {
   registerValidation,
@@ -11,11 +10,11 @@ import {
 } from "../validations/auth.validation.js";
 
 
+const userRepository = AppDataSource.getRepository(UsuarioEntity);
+
 export async function getUsers(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const users = await userRepository.find();
-
     res.status(200).json({ message: "Usuarios encontrados: ", data: users });
   } catch (error) {
     console.error("Error en user.controller.js -> getUsers(): ", error);
@@ -25,7 +24,6 @@ export async function getUsers(req, res) {
 
 export async function getUserById(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const { id } = req.params;
     const user = await userRepository.findOne({ where: { id } });
 
@@ -42,7 +40,6 @@ export async function getUserById(req, res) {
 
 export async function updateUserById(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const { id } = req.params;
     const { username, email, rut } = req.body;
     const user = await userRepository.findOne({ where: { id } });
@@ -68,7 +65,6 @@ export async function updateUserById(req, res) {
 
 export async function deleteUserById(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const { id } = req.params;
     const user = await userRepository.findOne({ where: { id } });
 
@@ -87,7 +83,6 @@ export async function deleteUserById(req, res) {
 
 export async function getProfile(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const userEmail = req.user.email;
     const user = await userRepository.findOne({ where: { email: userEmail } });
     
@@ -112,7 +107,6 @@ export async function getProfile(req, res) {
 
 export async function getUserStats(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const usuariosCreados = await userRepository.count();
     const usuarios = await userRepository.count({where: {role: "usuario"}});
     const admninistradores = await userRepository.count({where: {role: "administrador"}});
@@ -133,7 +127,6 @@ export async function getUserStats(req, res) {
 
 export async function register(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const { username, rut, email, password } = req.body;
     const { error } = registerValidation.validate(req.body);
     if (error) return res.status(400).json({ message: error.message });
@@ -177,7 +170,6 @@ export async function register(req, res) {
 
 export async function login(req, res) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
     const { email, password } = req.body;
     const { error } = loginValidation.validate(req.body);
     if (error) return res.status(400).json({ message: error.message });
