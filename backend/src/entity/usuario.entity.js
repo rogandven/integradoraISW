@@ -36,7 +36,7 @@ export const UsuarioEntity = new EntitySchema({
             type: Number,
             nullable: true,
             foreignKey: {
-                target: "grupo", // CountryEntity
+                target: "grupo",
                 inverseSide: "id",
             },
         }
