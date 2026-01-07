@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 
 export async function registerService(datauser) {
     try {
-        const response = await axios.post("/auth/register", {
+        const response = await axios.post("/users/register", {
             username: datauser.username,
             email: datauser.email,
             rut: datauser.rut,
@@ -20,7 +20,7 @@ export async function registerService(datauser) {
 
 export async function loginService(datauser) {
     try {
-        const response = await axios.post('/auth/login', {
+        const response = await axios.post('/users/login', {
             email: datauser.email,
             password: datauser.password
         });

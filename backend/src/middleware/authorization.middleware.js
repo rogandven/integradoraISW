@@ -1,10 +1,10 @@
 "use strict";
-import User from "../entity/user.entity.js";
+import Usuario from "../entity/usuario.entity.js";
 import { AppDataSource } from "../config/configDb.js";
 
 export async function isAdmin(req, res, next) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(Usuario);
     const userFound = await userRepository.findOneBy({
       email: req.user?.email,
     });
