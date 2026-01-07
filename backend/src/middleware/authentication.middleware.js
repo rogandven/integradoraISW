@@ -1,6 +1,7 @@
 "use strict";
 import { SESSION_SECRET } from "../config/configEnv.js";
 import jwt from "jsonwebtoken";
+import { userRepository } from "../services/usuario.service.js";
 
 export function authenticateJwt(req, res, next) {
   const authHeader = req.headers.authorization;
@@ -12,7 +13,12 @@ export function authenticateJwt(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, SESSION_SECRET);
+    const additionalData = userRepository.findOne({where: {rut: decoded.rut}});
+    if (!additionalData) {
+      throw Error("lol");
+    }
     req.user = decoded;
+    Object.assign(req.user, additionalData);
     next();
     
   } catch (error) {

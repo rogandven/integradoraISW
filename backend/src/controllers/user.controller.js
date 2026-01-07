@@ -182,10 +182,9 @@ export async function login(req, res) {
         .json({ message: "La contraseña ingresada no es correcta" });
 
     const payload = {
-      username: userFound.username,
-      email: userFound.email,
       rut: userFound.rut,
-      rol: userFound.role,
+      email: userFound.email,
+      tipo_usuarios: userFound.tipo_usuarios,
     };
     const accessToken = jwt.sign(payload, SESSION_SECRET, { expiresIn: "1d" });
 

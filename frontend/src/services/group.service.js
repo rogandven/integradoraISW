@@ -8,3 +8,13 @@ export async function getGrupos() {
         console.error("Error al obtener grupos:", error);
     }
 }
+
+export async function createSolicitud(id) {
+    try {
+        const response = await axios.post(`grupos/solicitar?grupo=${id}`);
+        return response?.status || 400;
+    } catch (error) {
+        console.error(error);
+        return error?.response?.status || 500;
+    }
+}

@@ -1,8 +1,12 @@
 import { GrGroup } from "react-icons/gr";
 import { BsPersonFillAdd } from "react-icons/bs";
+import { useCreateSolicitud } from "../../hooks/groups/useCreateSolicitud";
+
 
 
 export const DUGroupTable = (groups) => {
+    const createSolicitud = useCreateSolicitud();
+
     return (
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
@@ -41,7 +45,7 @@ export const DUGroupTable = (groups) => {
                                 })}
                             </td>
                             <td>
-                                <button className="btn btn-primary"><BsPersonFillAdd /></button>
+                                <button className="btn btn-primary" onClick={() => {createSolicitud(group.id)}}><BsPersonFillAdd /></button>
                             </td>
                         </tr>
                     )
