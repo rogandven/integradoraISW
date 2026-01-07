@@ -3,8 +3,8 @@
 import { EntitySchema } from "typeorm";
 
 export const VotoEntity = new EntitySchema({
-    name: "solicitud",
-    tableName: "solicitud",
+    name: "voto",
+    tableName: "voto",
     columns: {
         id: {
             type: Number,
