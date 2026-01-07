@@ -1,12 +1,13 @@
 "use strict";
 
-import User from "../entity/user.entity.js";
+// import User from "../entity/user.entity.js";
 import { AppDataSource } from "../config/configDb.js";
 import { encryptPassword } from "../helpers/bcrypt.helper.js";
 
 export async function createUsers() {
     try {
-        const userRepository = AppDataSource.getRepository(User);
+        const userRepository = null;
+        // const userRepository = AppDataSource.getRepository(User);
 
         const count = await userRepository.count();
         if (count > 0) return;
